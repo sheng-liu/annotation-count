@@ -7,6 +7,10 @@ export default defineConfig({
 	name: pkg.config.addonName,
 	id: pkg.config.addonID,
 	namespace: pkg.config.addonRef,
+	updateURL:
+		"https://github.com/sheng-liu/annotation-count/releases/download/update/update.json",
+	xpiDownloadLink:
+		"https://github.com/sheng-liu/annotation-count/releases/download/v{{version}}/{{xpiName}}.xpi",
 	server: {
 		asProxy: true,
 	},

@@ -20,12 +20,15 @@
 		"update-deps": "npm update --save"
 	},
 	"author": "Sheng Liu; based on work by Dominic Dall'Osto",
-	"license": "AGPL-3.0-or-later",
+	"license": "GPL-3.0-or-later",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/shengliu/annotation-count.git"
+		"url": "git+https://github.com/sheng-liu/annotation-count.git"
 	},
-	"homepage": "https://github.com/Dominic-DallOsto/zotero-annotations-count",
+	"bugs": {
+		"url": "https://github.com/sheng-liu/annotation-count/issues"
+	},
+	"homepage": "https://github.com/sheng-liu/annotation-count",
 	"dependencies": {
 		"zotero-plugin-toolkit": "^5.0.1"
 	},

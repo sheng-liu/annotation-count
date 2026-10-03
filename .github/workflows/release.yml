@@ -3,6 +3,9 @@ name: release
 on:
     push:
 
+permissions:
+    contents: write
+
 jobs:
     test:
         runs-on: ubuntu-latest
@@ -29,10 +32,10 @@ jobs:
                       ${{ runner.os }}-
 
             - name: install node dependencies
-              run: npm install
+              run: npm ci
 
-            - name: build
-              run: npm run build
+            - name: test and build
+              run: npm test
 
     release:
         runs-on: ubuntu-latest
@@ -62,7 +65,7 @@ jobs:
                       ${{ runner.os }}-
 
             - name: install node dependencies
-              run: npm install
+              run: npm ci
 
             - name: build
               run: npm run build
@@ -82,11 +85,3 @@ jobs:
                   tag_name: update
                   files: build/update*.json
                   make_latest: false
-
-            - name: Notify release
-              uses: apexskier/github-release-commenter@v1
-              continue-on-error: true
-              with:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  comment-template: |
-                      :rocket: _This ticket has been resolved in {release_tag}. See {release_link} for release notes._

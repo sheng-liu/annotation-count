@@ -38,11 +38,15 @@ Errors are logged to Zotero's error console and summarized when the pass ends.
 
 ## Install
 
-1. Build the plugin with `npm ci` and `npm test`.
+1. Download `annotation-count.xpi` from the
+   [latest release](https://github.com/sheng-liu/annotation-count/releases/latest).
 2. In Zotero, choose **Tools → Plugins**.
 3. Use the gear menu and choose **Install Plugin From File…**.
-4. Select `build/annotation-count.xpi`.
+4. Select the downloaded `annotation-count.xpi`.
 5. Right-click the Zotero item-list header and enable the desired columns.
+
+Zotero checks the repository's update manifest automatically for later
+releases. No npm or command-line tools are needed to install the XPI.
 
 ## Development
 
@@ -72,4 +76,4 @@ column values as strings; rendered cells still show ordinary numbers.
 This project began as a fork of
 [Zotero Annotations Count](https://github.com/Dominic-DallOsto/zotero-annotations-count)
 by Dominic Dall'Osto. See [NOTICE.md](NOTICE.md). It remains licensed under
-AGPL-3.0-or-later.
+GPL-3.0-or-later.
