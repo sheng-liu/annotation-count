@@ -1,0 +1,80 @@
+{
+	"name": "zotero-annotation-count-local",
+	"version": "0.1.1",
+	"description": "Sort Zotero items by PDF marks, written comments, annotation date, and migrated ReadCube records.",
+	"config": {
+		"addonName": "Annotation Count",
+		"addonID": "annotation-count@shengliu.local",
+		"addonRef": "annotation-count",
+		"addonInstance": "AnnotationCountLocal",
+		"prefsPrefix": "extensions.zotero.annotation-count"
+	},
+	"main": "src/index.ts",
+	"scripts": {
+		"start": "zotero-plugin serve",
+		"build": "tsc --noEmit && zotero-plugin build",
+		"stop": "node scripts/stop.mjs",
+		"lint": "prettier --write . && eslint . --fix",
+		"test": "esbuild tests/metrics.test.ts --bundle --platform=node --outfile=.test-build/metrics.test.cjs && node --test .test-build/metrics.test.cjs && npm run build",
+		"release": "release-it --only-version --preReleaseId=beta",
+		"update-deps": "npm update --save"
+	},
+	"author": "Sheng Liu; based on work by Dominic Dall'Osto",
+	"license": "AGPL-3.0-or-later",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/shengliu/annotation-count.git"
+	},
+	"homepage": "https://github.com/Dominic-DallOsto/zotero-annotations-count",
+	"dependencies": {
+		"zotero-plugin-toolkit": "^5.0.1"
+	},
+	"devDependencies": {
+		"@types/node": "^24.1.0",
+		"esbuild": "^0.25.8",
+		"eslint": "^9.32.0",
+		"eslint-config-prettier": "^10.1.8",
+		"prettier": "^3.6.2",
+		"release-it": "^19.0.4",
+		"replace-in-file": "^8.3.0",
+		"typescript": "^5.8.3",
+		"typescript-eslint": "^8.38.0",
+		"zotero-plugin-scaffold": "^0.8.0",
+		"zotero-types": "^4.0.5"
+	},
+	"prettier": {
+		"printWidth": 80,
+		"useTabs": true,
+		"tabWidth": 4,
+		"endOfLine": "lf",
+		"overrides": [
+			{
+				"files": [
+					"*.xhtml"
+				],
+				"options": {
+					"htmlWhitespaceSensitivity": "css"
+				}
+			}
+		]
+	},
+	"release-it": {
+		"git": {
+			"tagName": "v${version}"
+		},
+		"npm": {
+			"publish": false
+		},
+		"github": {
+			"release": false,
+			"assets": [
+				"build/*.xpi",
+				"build/update*.json"
+			]
+		},
+		"hooks": {
+			"before:init": "npm run lint",
+			"after:bump": "npm run build"
+		}
+	}
+}
